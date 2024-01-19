@@ -3,13 +3,32 @@
 <head>
     <meta charset="UTF-8" />
     <title>Spa Menu</title>
-    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link th:href="@{styles.css}" rel="stylesheet" />
 </head>
 <body>
 <h1>My Super Fancy Spa</h1>
 <div id = "clientProfile">
+    <h2>My Profile</h2>
+    <p th:text=${name}></p>
+    <p th:text=${skintype}></p>
+    <p th:text=${manipedi}></p>
+</div>
+<div>
+    <p th:replace = "fragments.html :: templateText"></p>
 </div>
 <div id = "servicesMenu">
+    <table>
+        <tr th:each="item : ${appropriateFacials}">
+            <td th:text="${item}"></td>
+
+        </tr>
+    </table>
+</div>
+<div th:if="${manipedi.equals('pedicure')}">
+    <p th:replace = "fragments.html :: pedicureTemplate"></p>
+</div>
+<div th:if="${manipedi.equals('manicure')}">
+    <p th:replace = "fragments.html :: manicureTemplate"></p>
 </div>
 </body>
 </html>
